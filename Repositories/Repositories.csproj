@@ -49,15 +49,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryImplementations\AddressRepository.cs" />
+    <Compile Include="RepositoryImplementations\CustomerRepository.cs" />
+    <Compile Include="RepositoryImplementations\ProductInventoryRepository.cs" />
+    <Compile Include="RepositoryImplementations\ProductPhotoRepository.cs" />
+    <Compile Include="RepositoryImplementations\ProductProductPhotoRepository.cs" />
+    <Compile Include="RepositoryImplementations\ProductRepository.cs" />
+    <Compile Include="RepositoryImplementations\PurchaseOrderDetailRepository.cs" />
+    <Compile Include="RepositoryImplementations\SalesPersonRepository.cs" />
+    <Compile Include="RepositoryImplementations\SalesTerritoryRepository.cs" />
+    <Compile Include="RepositoryImplementations\ShoppingCartItemRepository.cs" />
     <Compile Include="RepositoryImplementations\PurchaseOrderHeaderRepository.cs" />
     <Compile Include="RepositoryImplementations\Repository.cs" />
-    <Compile Include="RepositoryInterfaces\ProductRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IProductRepository.cs" />
     <Compile Include="RepositoryInterfaces\IProductPhotoRepository.cs" />
     <Compile Include="RepositoryInterfaces\IPurchaseOrderDetailRepository.cs" />
     <Compile Include="RepositoryInterfaces\IProductInventoryRepository.cs" />
-    <Compile Include="RepositoryInterfaces\IProductProductPhoto.cs" />
-    <Compile Include="RepositoryInterfaces\ISalesPerson.cs" />
-    <Compile Include="RepositoryInterfaces\ISalesTerritory.cs" />
+    <Compile Include="RepositoryInterfaces\IProductProductPhotoRepository.cs" />
+    <Compile Include="RepositoryInterfaces\ISalesPersonRepository.cs" />
+    <Compile Include="RepositoryInterfaces\ISalesTerritoryRepository.cs" />
     <Compile Include="RepositoryInterfaces\IShoppingCartItemRepository.cs" />
     <Compile Include="RepositoryInterfaces\IAddressRepository.cs" />
     <Compile Include="RepositoryInterfaces\ICustomerRepository.cs" />
