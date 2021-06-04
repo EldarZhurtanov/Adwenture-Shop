@@ -18,11 +18,11 @@ namespace ConsoleApp1
 
             using (UnitOfWork unitOfWork = new UnitOfWork(context))
             {
-                var t = unitOfWork.PurchaseOrderHeaderRepository.GetList();
+                var t = unitOfWork.PurchaseOrderHeader.GetList(a=> a.VendorID == 1636);
 
                 foreach (var item in t)
                 {
-                    Console.WriteLine(item.Freight);
+                    Console.WriteLine(item.VendorID);
                 }
                 Console.ReadKey();
             }

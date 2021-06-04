@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.RepositoryInterfaces
 {
-    interface IProductInventoryRepository : IRepository<ProductInventory>
+    public interface IProductInventoryRepository : IRepository<ProductInventory>
     {
     }
 }

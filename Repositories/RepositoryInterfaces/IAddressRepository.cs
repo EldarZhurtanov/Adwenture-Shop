@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.RepositoryInterfaces
 {
-    interface IAddressRepository : IRepository<Address>
+    public interface IAddressRepository : IRepository<Address>
     {
     }
 }

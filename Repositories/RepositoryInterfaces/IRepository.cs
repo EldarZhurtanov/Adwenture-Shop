@@ -12,6 +12,7 @@ namespace Repositories.RepositoryInterfaces
         T Get(int id);
         void Create(T entity);
         void Delete(T model);
+        void Update(T entity);
         IQueryable<T> GetList();
         IQueryable<T> GetList(Expression<Func<T, bool>> predicate);
     }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.RepositoryInterfaces
 {
-    interface IPurchaseOrderDetailRepository : IRepository<PurchaseOrderDetail>
+    public interface IPurchaseOrderDetailRepository : IRepository<PurchaseOrderDetail>
     {
     }
 }

@@ -20,7 +20,7 @@ namespace Repositories.RepositoryImplementations
             _dbSet = _context.Set<T>();
         }
 
-        T IRepository<T>.Get(int id)
+        public T Get(int id)
         {
             return _dbSet.Find(id);
         }
@@ -31,6 +31,12 @@ namespace Repositories.RepositoryImplementations
         public void Delete(T model)
         {
             _dbSet.Remove(model);
+        }
+        public void Update(T entity)
+        {
+            _dbSet.Attach(entity);
+            var entry = _context.Entry(entity);
+            entry.State = EntityState.Modified;
         }
         public IQueryable<T> GetList()
         {

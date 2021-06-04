@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.RepositoryInterfaces
 {
-    interface ISalesTerritoryRepository : IRepository<SalesTerritory>
+    public interface ISalesTerritoryRepository : IRepository<SalesTerritory>
     {
     }
 }
