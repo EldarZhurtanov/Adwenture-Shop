@@ -23,9 +23,7 @@ namespace Model.Models
 
         public int? TerritoryID { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Required]
-        [StringLength(10)]
+        [StringLength(50)]
         public string AccountNumber { get; set; }
 
         public Guid rowguid { get; set; }

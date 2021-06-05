@@ -13,10 +13,6 @@ namespace Model
         {
         }
 
-        public virtual DbSet<AWBuildVersion> AWBuildVersion { get; set; }
-        public virtual DbSet<DatabaseLog> DatabaseLog { get; set; }
-        public virtual DbSet<ErrorLog> ErrorLog { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Department> Department { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<EmployeeDepartmentHistory> EmployeeDepartmentHistory { get; set; }

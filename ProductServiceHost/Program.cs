@@ -15,7 +15,7 @@ namespace ProductServiceHost
             {
                 host.Open();
 
-                Console.WriteLine("The service is ready.");
+                Console.WriteLine("The Product Service is ready.");
                 Console.WriteLine("Press <Enter> to stop the service.");
                 Console.ReadLine();
 

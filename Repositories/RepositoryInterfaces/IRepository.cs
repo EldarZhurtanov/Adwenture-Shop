@@ -10,9 +10,9 @@ namespace Repositories.RepositoryInterfaces
     public interface IRepository<T> where T : class
     {
         T Get(int id);
-        void Create(T entity);
+        T Create(T entity);
         void Delete(T model);
-        void Update(T entity);
+        T Update(T entity);
         IQueryable<T> GetList();
         IQueryable<T> GetList(Expression<Func<T, bool>> predicate);
     }

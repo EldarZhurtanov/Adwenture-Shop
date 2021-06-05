@@ -15,8 +15,8 @@ namespace Core.Managers.MangersImplementations
 {
     public class CartManager : ICartManager
     {
-        private DbContext context = new AdwentureWorksContext();
-        private UnitOfWork unitOfWork;
+        private readonly DbContext context = new AdwentureWorksContext();
+        private readonly UnitOfWork unitOfWork;
 
         public CartManager()
         {
@@ -104,7 +104,7 @@ namespace Core.Managers.MangersImplementations
             {
                 var product = unitOfWork.Product.Get(item.ProductID);
 
-                var itemDTOs = CartItemDTOCreater.Create(item, product);
+                var itemDTOs = CartItemDTOCreator.Create(item, product);
                 itemsDTOs.Add(itemDTOs);
             }
             return itemsDTOs;

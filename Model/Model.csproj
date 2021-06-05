@@ -37,6 +37,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -50,10 +59,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IdentityContext.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\AddressType.cs" />
     <Compile Include="AdwentureWorksContext.cs" />
-    <Compile Include="Models\AWBuildVersion.cs" />
+    <Compile Include="Models\ApplicationRole.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\AspNetUsersBusinesEntity.cs" />
     <Compile Include="Models\BillOfMaterials.cs" />
     <Compile Include="Models\BusinessEntity.cs" />
     <Compile Include="Models\BusinessEntityAddress.cs" />
@@ -66,13 +78,11 @@
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\CurrencyRate.cs" />
     <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\DatabaseLog.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\EmailAddress.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeDepartmentHistory.cs" />
     <Compile Include="Models\EmployeePayHistory.cs" />
-    <Compile Include="Models\ErrorLog.cs" />
     <Compile Include="Models\Illustration.cs" />
     <Compile Include="Models\JobCandidate.cs" />
     <Compile Include="Models\Location.cs" />
@@ -115,7 +125,6 @@
     <Compile Include="Models\SpecialOfferProduct.cs" />
     <Compile Include="Models\StateProvince.cs" />
     <Compile Include="Models\Store.cs" />
-    <Compile Include="Models\sysdiagrams.cs" />
     <Compile Include="Models\TransactionHistory.cs" />
     <Compile Include="Models\TransactionHistoryArchive.cs" />
     <Compile Include="Models\UnitMeasure.cs" />
@@ -124,7 +133,6 @@
     <Compile Include="Models\WorkOrderRouting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

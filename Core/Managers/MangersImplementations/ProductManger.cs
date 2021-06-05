@@ -1,6 +1,6 @@
 ﻿using Core.Managers.Helpers;
 using Core.Managers.ManagerInterfaces;
-using Core.Models;
+using DataContracts;
 using Model;
 using Model.Models;
 using Repositories;
@@ -15,8 +15,8 @@ namespace Core.Managers.MangersImplementations
 {
     public class ProductManger : IProductManager
     {
-        private DbContext context = new AdwentureWorksContext();
-        private UnitOfWork unitOfWork;
+        private readonly DbContext context = new AdwentureWorksContext();
+        private readonly UnitOfWork unitOfWork;
 
         public ProductManger()
         {
@@ -50,7 +50,7 @@ namespace Core.Managers.MangersImplementations
             var inventory = unitOfWork.ProductInventory.GetList(a => a.ProductID == productID).FirstOrDefault();
             var photosIDs = unitOfWork.ProductProductPhoto.GetList(a => a.ProductID == productID);
 
-            return DetailProductCreater.Create(product, photosIDs, inventory, description, subcategory);
+            return DetailProductDTOCreator.Create(product, photosIDs, inventory, description, subcategory);
         }
 
         public IEnumerable<ShortProductDTO> GetShortProducts(int skip, int take)
@@ -78,7 +78,7 @@ namespace Core.Managers.MangersImplementations
                 var inventory = unitOfWork.ProductInventory.GetList(a => a.ProductID == product.ProductID).FirstOrDefault();
                 var thumbnail = unitOfWork.ProductProductPhoto.GetList(a => a.ProductID == product.ProductID).FirstOrDefault();
 
-                shortProductDTOs.Add(ShortProductCreater.Create(product, thumbnail, inventory, subcategory));
+                shortProductDTOs.Add(ShortProductDTOCreator.Create(product, thumbnail, inventory, subcategory));
             }
             return shortProductDTOs;
         }

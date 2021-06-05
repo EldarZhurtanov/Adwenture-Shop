@@ -1,7 +1,12 @@
-﻿using Repositories.RepositoryImplementations;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Model;
+using Model.Models;
+using Repositories.IdentityManagers;
+using Repositories.RepositoryImplementations;
 using Repositories.RepositoryInterfaces;
 using System;
 using System.Collections.Generic;
+using Microsoft.SqlServer.Types;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -28,10 +33,19 @@ namespace Repositories
         public ProductModelRepository ProductModel { get; private set; }
         public ProductSubcategoryRepository  ProductSubcategory { get; private set; }
         public ProductModelProductDescriptionCultureRepository ProductModelProductDescriptionCulture { get; private set; }
+        public AspNetUsersBusinesEntityRepository AspNetUsersBusinesEntity { get; private set; }
+        public ApplicationUserManager ApplicationUser { get; private set; }
+        public ApplicationRoleManager ApplicationRole { get; private set; }
+        public BusinessEntityAddressRepository BusinessEntityAddress { get; private set; }
+        public BusinessEntityRepository BusinessEntity { get; private set; }
+        public PersonRepository Person { get; private set; }
+        public AddressTypeRepository AddressType { get; private set; }
+        public StateProvinceRepository StateProvince { get; private set; }
 
         public UnitOfWork(DbContext context)
         {
             this._context = context;
+            var v = new ApplicationContext();
 
             Address = new AddressRepository(context);
             Customer = new CustomerRepository(context);
@@ -48,6 +62,14 @@ namespace Repositories
             ProductModel = new ProductModelRepository(context);
             ProductSubcategory = new ProductSubcategoryRepository(context);
             ProductModelProductDescriptionCulture = new ProductModelProductDescriptionCultureRepository(context);
+            AspNetUsersBusinesEntity = new AspNetUsersBusinesEntityRepository(v);
+            ApplicationUser = new ApplicationUserManager(new UserStore<ApplicationUser>(v));
+            ApplicationRole = new ApplicationRoleManager(new RoleStore<ApplicationRole>(v));
+            BusinessEntityAddress = new BusinessEntityAddressRepository(context);
+            BusinessEntity = new BusinessEntityRepository(context);
+            Person = new PersonRepository(context);
+            AddressType = new AddressTypeRepository(context);
+            StateProvince = new StateProvinceRepository(context);
         }
 
         public int Complete()

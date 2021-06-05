@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Core.Models
+namespace DataContracts
 {
     [DataContract]
     public class ShortProductDTO

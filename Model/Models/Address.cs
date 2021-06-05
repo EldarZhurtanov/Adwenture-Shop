@@ -26,17 +26,13 @@ namespace Model.Models
         [StringLength(60)]
         public string AddressLine2 { get; set; }
 
-        [Required]
         [StringLength(30)]
         public string City { get; set; }
 
         public int StateProvinceID { get; set; }
 
-        [Required]
         [StringLength(15)]
         public string PostalCode { get; set; }
-
-        public DbGeography SpatialLocation { get; set; }
 
         public Guid rowguid { get; set; }
 

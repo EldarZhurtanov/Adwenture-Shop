@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using System.ServiceModel;
 
-namespace Core.Models
+namespace DataContracts
 {
     [DataContract]
     public class DetailProductDTO

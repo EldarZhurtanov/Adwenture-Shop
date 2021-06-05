@@ -24,19 +24,21 @@ namespace Repositories.RepositoryImplementations
         {
             return _dbSet.Find(id);
         }
-        public void Create(T entity)
+        public T Create(T entity)
         {
-            _dbSet.Add(entity);
+            return _dbSet.Add(entity);
         }
         public void Delete(T model)
         {
             _dbSet.Remove(model);
         }
-        public void Update(T entity)
+        public T Update(T entity)
         {
-            _dbSet.Attach(entity);
+            var unit = _dbSet.Attach(entity);
             var entry = _context.Entry(entity);
             entry.State = EntityState.Modified;
+
+            return unit;
         }
         public IQueryable<T> GetList()
         {

@@ -37,8 +37,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,13 +55,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Managers\Helpers\CartItemDTOCreater.cs" />
-    <Compile Include="Managers\Helpers\DetailProductCreater.cs" />
-    <Compile Include="Managers\Helpers\ShortProductCreater.cs" />
+    <Compile Include="Managers\Helpers\BusinessEntityCreator.cs" />
+    <Compile Include="Managers\Helpers\CustomerCreator.cs" />
+    <Compile Include="Managers\Helpers\InitialDataGetter.cs" />
+    <Compile Include="Managers\Helpers\PersonCreator.cs" />
+    <Compile Include="Managers\Helpers\AspNetUsersBusinesEntityCreator.cs" />
+    <Compile Include="Managers\Helpers\BusinessEntityAddressCreator.cs" />
+    <Compile Include="Managers\Helpers\AddressCreator.cs" />
+    <Compile Include="Managers\Helpers\ApplicationUserCreator.cs" />
+    <Compile Include="Managers\Helpers\CartItemDTOCreator.cs" />
+    <Compile Include="Managers\Helpers\DetailProductDTOCreator.cs" />
+    <Compile Include="Managers\Helpers\ShortProductDTOCreator.cs" />
     <Compile Include="Managers\ManagerInterfaces\ICartManager.cs" />
+    <Compile Include="Managers\ManagerInterfaces\IUserManager.cs" />
     <Compile Include="Managers\MangersImplementations\CartManager.cs" />
     <Compile Include="Managers\MangersImplementations\ProductManger.cs" />
     <Compile Include="Managers\ManagerInterfaces\IProductManager.cs" />
+    <Compile Include="Managers\MangersImplementations\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,8 +92,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
