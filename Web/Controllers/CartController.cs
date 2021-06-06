@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.SessionState;
+﻿using System.Web.Mvc;
 using Web.CartServiceReference;
 
 namespace Web.Controllers
@@ -34,6 +29,10 @@ namespace Web.Controllers
         {
             cartService.Delete(Session.SessionID);
             return RedirectToAction("Index");
+        }
+        public string GetCartId()
+        {
+            return Session.SessionID;
         }
     }
 }

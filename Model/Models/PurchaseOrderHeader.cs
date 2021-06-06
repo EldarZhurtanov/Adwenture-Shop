@@ -4,7 +4,6 @@ namespace Model.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("Purchasing.PurchaseOrderHeader")]
     public partial class PurchaseOrderHeader
@@ -24,9 +23,11 @@ namespace Model.Models
 
         public int? EmployeeID { get; set; }
 
-        public int VendorID { get; set; }
+        public int? VendorID { get; set; }
 
-        public int ShipMethodID { get; set; }
+        public int? PersonID { get; set; }
+
+        public int? ShipMethodID { get; set; }
 
         public DateTime OrderDate { get; set; }
 
@@ -47,7 +48,7 @@ namespace Model.Models
 
         public DateTime ModifiedDate { get; set; }
 
-        public int? PersonID { get; set; }
+        public Guid? rowguid { get; set; }
 
         public virtual Employee Employee { get; set; }
 

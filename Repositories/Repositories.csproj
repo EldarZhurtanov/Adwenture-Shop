@@ -66,6 +66,9 @@
     <Compile Include="RepositoryImplementations\AspNetUsersBusinesEntityRepository.cs" />
     <Compile Include="RepositoryImplementations\BusinessEntityAddressRepository.cs" />
     <Compile Include="RepositoryImplementations\BusinessEntityRepository.cs" />
+    <Compile Include="RepositoryImplementations\ProductReserveRepository.cs" />
+    <Compile Include="RepositoryImplementations\SalesTaxRateRepository.cs" />
+    <Compile Include="RepositoryImplementations\ShipMethodRepository.cs" />
     <Compile Include="RepositoryImplementations\StateProvinceRepository.cs" />
     <Compile Include="RepositoryImplementations\PersonRepository.cs" />
     <Compile Include="RepositoryImplementations\ProductModelProductDescriptionCultureRepository.cs" />
@@ -82,6 +85,9 @@
     <Compile Include="RepositoryImplementations\ShoppingCartItemRepository.cs" />
     <Compile Include="RepositoryImplementations\PurchaseOrderHeaderRepository.cs" />
     <Compile Include="RepositoryImplementations\Repository.cs" />
+    <Compile Include="RepositoryInterfaces\IProductReserveRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IShipMethodRepository.cs" />
+    <Compile Include="RepositoryInterfaces\ISalesTaxRateRepository.cs" />
     <Compile Include="RepositoryInterfaces\IStateProvinceRepository.cs" />
     <Compile Include="RepositoryInterfaces\IAddressTypeRepository.cs" />
     <Compile Include="RepositoryInterfaces\IPersonRepository.cs" />

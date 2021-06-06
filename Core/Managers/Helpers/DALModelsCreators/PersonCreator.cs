@@ -1,11 +1,7 @@
 ﻿using DataContracts;
 using Model.Models;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Managers.Helpers
 {
@@ -13,8 +9,8 @@ namespace Core.Managers.Helpers
     {
         public static Person Create(BusinessEntity businessEntity, UserDTO userDTO)
         {
-            return new Person() 
-            { 
+            return new Person()
+            {
                 BusinessEntityID = businessEntity.BusinessEntityID,
                 FirstName = userDTO.FirstName,
                 MiddleName = userDTO.MiddleName,

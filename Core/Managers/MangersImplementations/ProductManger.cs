@@ -1,26 +1,25 @@
 ﻿using Core.Managers.Helpers;
 using Core.Managers.ManagerInterfaces;
 using DataContracts;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Model;
 using Model.Models;
 using Repositories;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Managers.MangersImplementations
 {
     public class ProductManger : IProductManager
     {
         private readonly DbContext context = new AdwentureWorksContext();
+        private readonly IdentityDbContext<ApplicationUser> identityDbContext = new IdentityContext();
         private readonly UnitOfWork unitOfWork;
 
         public ProductManger()
         {
-            unitOfWork = new UnitOfWork(context);
+            unitOfWork = new UnitOfWork(context, identityDbContext);
         }
 
         public DetailProductDTO GetDetailProduct(int productID)
@@ -31,7 +30,7 @@ namespace Core.Managers.MangersImplementations
             ProductSubcategory subcategory = null;
             ProductDescription description = null;
 
-            if(product.ProductSubcategoryID.HasValue)
+            if (product.ProductSubcategoryID.HasValue)
                 subcategory = unitOfWork.ProductSubcategory.Get(product.ProductSubcategoryID.Value);
 
             if (product.ProductModelID.HasValue)
@@ -57,28 +56,35 @@ namespace Core.Managers.MangersImplementations
         {
             var shortProductDTOs = new List<ShortProductDTO>();
             var inStockProducts = new List<Product>();
-            foreach (var product in unitOfWork.Product.GetList().OrderBy(a=> a.ProductID).Skip(skip).Take(take).ToList())
+
+            foreach (var product in unitOfWork.Product.GetList().OrderBy(a => a.ProductID).Skip(skip).Take(take).ToList())
             {
-                var inventory = unitOfWork
-                                  .ProductInventory
-                                  .GetList(a => a.ProductID == product.ProductID)
-                                  .FirstOrDefault();
+                var inventory = unitOfWork.ProductInventory.GetList(a => a.ProductID == product.ProductID).FirstOrDefault();
+
+                var reserve = unitOfWork
+                                .ProductReserve
+                                .Get(product.ProductID);
 
                 if (inventory != null && inventory.Quantity > 0)
-                    inStockProducts.Add(product);
+                    if (reserve == null)
+                        inStockProducts.Add(product);
+                    else if (inventory.Quantity - reserve.Quantity > 0)
+                        inStockProducts.Add(product);
+
             }
-            
-            foreach(var product in inStockProducts)
+
+            foreach (var product in inStockProducts)
             {
                 ProductSubcategory subcategory = null;
 
-                if(product.ProductSubcategoryID.HasValue)
+                if (product.ProductSubcategoryID.HasValue)
                     subcategory = unitOfWork.ProductSubcategory.Get(product.ProductSubcategoryID.Value);
 
+                var reserve = unitOfWork.ProductReserve.Get(product.ProductID);
                 var inventory = unitOfWork.ProductInventory.GetList(a => a.ProductID == product.ProductID).FirstOrDefault();
                 var thumbnail = unitOfWork.ProductProductPhoto.GetList(a => a.ProductID == product.ProductID).FirstOrDefault();
 
-                shortProductDTOs.Add(ShortProductDTOCreator.Create(product, thumbnail, inventory, subcategory));
+                shortProductDTOs.Add(ShortProductDTOCreator.Create(product, thumbnail, inventory, subcategory, reserve));
             }
             return shortProductDTOs;
         }
@@ -91,7 +97,7 @@ namespace Core.Managers.MangersImplementations
         {
             var thumbnail = unitOfWork.ProductPhoto.Get(id);
 
-            if(thumbnail != null)
+            if (thumbnail != null)
                 return thumbnail.ThumbNailPhoto;
 
             return null;
@@ -101,7 +107,7 @@ namespace Core.Managers.MangersImplementations
         {
             var photo = unitOfWork.ProductPhoto.Get(id);
 
-            if(photo != null)
+            if (photo != null)
                 return photo.LargePhoto;
             return null;
         }

@@ -1,6 +1,7 @@
 ﻿using Core.Managers.Helpers;
 using Core.Managers.ManagerInterfaces;
 using DataContracts;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Model;
 using Model.Models;
 using Repositories;
@@ -8,19 +9,18 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Managers.MangersImplementations
 {
     public class CartManager : ICartManager
     {
         private readonly DbContext context = new AdwentureWorksContext();
+        private readonly IdentityDbContext<ApplicationUser> identityDbContext = new IdentityContext();
         private readonly UnitOfWork unitOfWork;
 
         public CartManager()
         {
-            unitOfWork = new UnitOfWork(context);
+            unitOfWork = new UnitOfWork(context, identityDbContext);
         }
         public void AddCartItem(string sessionID, int productID, int quantity)
         {
@@ -31,21 +31,23 @@ namespace Core.Managers.MangersImplementations
 
             bool itemAlreadyExist = unitOfWork.ShoppingCart.GetList(a => a.ShoppingCartID == sessionID && a.ProductID == productID).Count() > 0;
             var inventory = unitOfWork.ProductInventory.GetList(a => a.ProductID == productID).FirstOrDefault();
-            bool inStockEnough = inventory != null && inventory.Quantity > 0;
+            bool productExistInInventory = inventory != null && inventory.Quantity > 0;
 
-            if(itemAlreadyExist)
+            if (!productExistInInventory)
+                return;
+
+            if (itemAlreadyExist)
             {
                 ChangeCartItemQuantity(sessionID, productID, quantity);
                 return;
             }
-
             var newItem = new ShoppingCartItem()
             {
                 ProductID = productID,
                 ShoppingCartID = sessionID,
                 DateCreated = DateTime.Now,
                 ModifiedDate = DateTime.Now,
-                Quantity = inStockEnough ? quantity : inventory.Quantity
+                Quantity = quantity
             };
 
             unitOfWork.ShoppingCart.Create(newItem);
@@ -61,7 +63,10 @@ namespace Core.Managers.MangersImplementations
 
             bool itemAlreadyExist = unitOfWork.ShoppingCart.GetList(a => a.ShoppingCartID == sessionID && a.ProductID == productID).Count() > 0;
             var inventory = unitOfWork.ProductInventory.GetList(a => a.ProductID == productID).FirstOrDefault();
-            bool inStockEnough = inventory != null && inventory.Quantity > 0;
+            bool productExistInInventory = inventory != null && inventory.Quantity > 0;
+
+            if (!productExistInInventory)
+                return;
 
             if (!itemAlreadyExist)
             {
@@ -69,15 +74,15 @@ namespace Core.Managers.MangersImplementations
                 return;
             }
 
-            var item = unitOfWork.ShoppingCart.GetList(a=> a.ProductID == productID && a.ShoppingCartID == sessionID).FirstOrDefault();
-            if(quantity == 0)
+            var item = unitOfWork.ShoppingCart.GetList(a => a.ProductID == productID && a.ShoppingCartID == sessionID).FirstOrDefault();
+            if (quantity == 0)
             {
                 unitOfWork.ShoppingCart.Delete(item);
                 unitOfWork.Complete();
                 return;
             }
 
-            item.Quantity = inStockEnough ? quantity : inventory.Quantity;
+            item.Quantity = quantity;
 
             unitOfWork.ShoppingCart.Update(item);
             unitOfWork.Complete();
@@ -88,7 +93,7 @@ namespace Core.Managers.MangersImplementations
         {
             var items = unitOfWork.ShoppingCart.GetList(a => a.ShoppingCartID == sessionID);
 
-            foreach(var item in items)
+            foreach (var item in items)
             {
                 unitOfWork.ShoppingCart.Delete(item);
             }

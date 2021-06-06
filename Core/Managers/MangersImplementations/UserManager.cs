@@ -2,6 +2,7 @@
 using Core.Managers.ManagerInterfaces;
 using DataContracts;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Model;
 using Model.Models;
 using Repositories;
@@ -10,19 +11,18 @@ using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Managers.MangersImplementations
 {
     public class UserManager : IUserManager
     {
         private readonly DbContext context = new AdwentureWorksContext();
+        private readonly IdentityDbContext<ApplicationUser> identityDbContext = new IdentityContext();
         private readonly UnitOfWork unitOfWork;
 
         public UserManager()
         {
-            unitOfWork = new UnitOfWork(context);
+            unitOfWork = new UnitOfWork(context, identityDbContext);
 
             var initiaData = InitialDataGetter.Get();
             SetInitialData(initiaData.Item1, initiaData.Item2);

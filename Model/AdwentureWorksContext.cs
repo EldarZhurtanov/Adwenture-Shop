@@ -1,8 +1,5 @@
 using Model.Models;
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Linq;
 
 namespace Model
 {
@@ -47,6 +44,7 @@ namespace Model
         public virtual DbSet<ProductModelProductDescriptionCulture> ProductModelProductDescriptionCulture { get; set; }
         public virtual DbSet<ProductPhoto> ProductPhoto { get; set; }
         public virtual DbSet<ProductProductPhoto> ProductProductPhoto { get; set; }
+        public virtual DbSet<ProductReserve> ProductReserve { get; set; }
         public virtual DbSet<ProductReview> ProductReview { get; set; }
         public virtual DbSet<ProductSubcategory> ProductSubcategory { get; set; }
         public virtual DbSet<ScrapReason> ScrapReason { get; set; }
@@ -366,6 +364,10 @@ namespace Model
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Product>()
+                .HasOptional(e => e.ProductReserve)
+                .WithRequired(e => e.Product);
+
+            modelBuilder.Entity<Product>()
                 .HasMany(e => e.ProductReview)
                 .WithRequired(e => e.Product)
                 .WillCascadeOnDelete(false);
@@ -556,11 +558,6 @@ namespace Model
                 .HasPrecision(19, 4);
 
             modelBuilder.Entity<ShipMethod>()
-                .HasMany(e => e.PurchaseOrderHeader)
-                .WithRequired(e => e.ShipMethod)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<ShipMethod>()
                 .HasMany(e => e.SalesOrderHeader)
                 .WithRequired(e => e.ShipMethod)
                 .WillCascadeOnDelete(false);
@@ -572,9 +569,8 @@ namespace Model
 
             modelBuilder.Entity<Vendor>()
                 .HasMany(e => e.PurchaseOrderHeader)
-                .WithRequired(e => e.Vendor)
-                .HasForeignKey(e => e.VendorID)
-                .WillCascadeOnDelete(false);
+                .WithOptional(e => e.Vendor)
+                .HasForeignKey(e => e.VendorID);
 
             modelBuilder.Entity<CountryRegionCurrency>()
                 .Property(e => e.CurrencyCode)

@@ -1,12 +1,7 @@
-﻿using ServiceСontracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Core.Managers.ManagerInterfaces;
+﻿using Core.Managers.ManagerInterfaces;
 using Core.Managers.MangersImplementations;
 using DataContracts;
+using ServiceСontracts;
 using System.Security.Claims;
 
 namespace ServiceImplementations

@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -55,23 +58,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Managers\Helpers\BusinessEntityCreator.cs" />
-    <Compile Include="Managers\Helpers\CustomerCreator.cs" />
+    <Compile Include="Managers\Helpers\CoreModelsHelpers\ShipCustomerDTO.cs" />
+    <Compile Include="Managers\Helpers\CoreModelsHelpers\ShipPurchaseOrderDetailDTO.cs" />
+    <Compile Include="Managers\Helpers\CoreModelsHelpers\ShipPurchaseOrderDTO.cs" />
+    <Compile Include="Managers\Helpers\DALModelsCreators\BusinessEntityCreator.cs" />
+    <Compile Include="Managers\Helpers\ServiceModelsCreators\CustomerCreator.cs" />
+    <Compile Include="Managers\Helpers\Extensions\PersonFullNameGetter.cs" />
     <Compile Include="Managers\Helpers\InitialDataGetter.cs" />
-    <Compile Include="Managers\Helpers\PersonCreator.cs" />
-    <Compile Include="Managers\Helpers\AspNetUsersBusinesEntityCreator.cs" />
-    <Compile Include="Managers\Helpers\BusinessEntityAddressCreator.cs" />
-    <Compile Include="Managers\Helpers\AddressCreator.cs" />
-    <Compile Include="Managers\Helpers\ApplicationUserCreator.cs" />
-    <Compile Include="Managers\Helpers\CartItemDTOCreator.cs" />
-    <Compile Include="Managers\Helpers\DetailProductDTOCreator.cs" />
-    <Compile Include="Managers\Helpers\ShortProductDTOCreator.cs" />
+    <Compile Include="Managers\Helpers\DALModelsCreators\PersonCreator.cs" />
+    <Compile Include="Managers\Helpers\DALModelsCreators\AspNetUsersBusinesEntityCreator.cs" />
+    <Compile Include="Managers\Helpers\DALModelsCreators\BusinessEntityAddressCreator.cs" />
+    <Compile Include="Managers\Helpers\DALModelsCreators\AddressCreator.cs" />
+    <Compile Include="Managers\Helpers\DALModelsCreators\ApplicationUserCreator.cs" />
+    <Compile Include="Managers\Helpers\ServiceModelsCreators\CartItemDTOCreator.cs" />
+    <Compile Include="Managers\Helpers\ServiceModelsCreators\DetailProductDTOCreator.cs" />
+    <Compile Include="Managers\Helpers\DALModelsCreators\PurchaseOrderDetailCreator.cs" />
+    <Compile Include="Managers\Helpers\ServiceModelsCreators\PurchaseOrderDetailRowDTOCreator.cs" />
+    <Compile Include="Managers\Helpers\DALModelsCreators\PurchaseOrderHeaderCreator.cs" />
+    <Compile Include="Managers\Helpers\ServiceModelsCreators\PurchaseOrdersHeaderDTOCreator.cs" />
+    <Compile Include="Managers\Helpers\ServiceModelsCreators\ShortProductDTOCreator.cs" />
     <Compile Include="Managers\ManagerInterfaces\ICartManager.cs" />
+    <Compile Include="Managers\ManagerInterfaces\IPurchaseOrderManager.cs" />
     <Compile Include="Managers\ManagerInterfaces\IUserManager.cs" />
     <Compile Include="Managers\MangersImplementations\CartManager.cs" />
     <Compile Include="Managers\MangersImplementations\ProductManger.cs" />
     <Compile Include="Managers\ManagerInterfaces\IProductManager.cs" />
+    <Compile Include="Managers\MangersImplementations\PurchaseOrderManager.cs" />
     <Compile Include="Managers\MangersImplementations\UserManager.cs" />
+    <Compile Include="Models\ShipPurchaseOrderDetailDTO.cs" />
+    <Compile Include="Models\ShipPurchaseOrderDTO.cs" />
+    <Compile Include="Models\ShipCustomerDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

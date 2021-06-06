@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.Owin;
-using Microsoft.Owin.Security;
-using Microsoft.AspNet.Identity.Owin;
-using System.Threading.Tasks;
-using System.Security.Claims;
-using Web.UserServiceReference;
 using Web.Models;
+using Web.UserServiceReference;
 
 namespace Web.Controllers
 {
@@ -28,7 +25,7 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserDTO userDto = new UserDTO { Email = model.Email, Password = model.Password};
+                UserDTO userDto = new UserDTO { Email = model.Email, Password = model.Password };
                 ClaimsIdentity claim = UserService.Authenticate(userDto);
                 if (claim == null)
                 {

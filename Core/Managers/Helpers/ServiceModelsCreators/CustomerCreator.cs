@@ -1,10 +1,5 @@
-﻿using DataContracts;
-using Model.Models;
+﻿using Model.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Managers.Helpers
 {
@@ -12,8 +7,8 @@ namespace Core.Managers.Helpers
     {
         public static Customer Create(Person person, StateProvince stateProvince)
         {
-            return new Customer() 
-            { 
+            return new Customer()
+            {
                 PersonID = person.BusinessEntityID,
                 TerritoryID = stateProvince.TerritoryID,
                 ModifiedDate = DateTime.Now,

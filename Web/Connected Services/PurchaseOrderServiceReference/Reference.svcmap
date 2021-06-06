@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f049bfe1-981c-44c0-8f4f-affbb224f033" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8735/PurchaseOrderService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PurchaseOrderService.xsd" MetadataType="Schema" ID="01680fb1-85bd-4bc4-bae0-ff2be1a6e8bf" SourceId="1" SourceUrl="http://localhost:8735/PurchaseOrderService?xsd=xsd0" />
+    <MetadataFile FileName="PurchaseOrderService.wsdl" MetadataType="Wsdl" ID="dc9c6ff8-92bd-4e47-ad24-fb6b88e6533c" SourceId="1" SourceUrl="http://localhost:8735/PurchaseOrderService?wsdl" />
+    <MetadataFile FileName="PurchaseOrderService1.xsd" MetadataType="Schema" ID="c6716f06-fefb-412f-bef0-23861423a2c3" SourceId="1" SourceUrl="http://localhost:8735/PurchaseOrderService?xsd=xsd1" />
+    <MetadataFile FileName="PurchaseOrderService.disco" MetadataType="Disco" ID="9de8a353-2e26-47c7-80d1-3a62f252f4a1" SourceId="1" SourceUrl="http://localhost:8735/PurchaseOrderService?disco" />
+    <MetadataFile FileName="PurchaseOrderService2.xsd" MetadataType="Schema" ID="6b7f134d-9ebe-45ba-85a1-1a9aa8017a41" SourceId="1" SourceUrl="http://localhost:8735/PurchaseOrderService?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

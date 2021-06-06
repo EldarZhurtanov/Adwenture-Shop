@@ -7,7 +7,8 @@
 
 <h2>Корзина</h2>
 <form method="post" action="/Cart/Delete">
-    <input type="submit" placeholder="Очистить корзину" />
+    <h3>Очистить корзину</h3>
+    <input type="submit" label="Очистить корзину" />
 </form>
 <table class="table">
     <tr>
@@ -68,6 +69,12 @@
             </td>
         </tr>
     }
-
-</table>
+    </table>
+        <form method="post" action="/PurchaseOrder/Create">
+            <h3>Оформить заказ</h3>
+            <input type="submit" placeholder="Очистить корзину" />
+        </form>
+    @if (!User.Identity.IsAuthenticated)
+    {
+    }
 

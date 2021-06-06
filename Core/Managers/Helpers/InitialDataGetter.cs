@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Managers.Helpers
 {
@@ -24,7 +21,12 @@ namespace Core.Managers.Helpers
                 AddressStateProvinceID = Convert.ToInt32(ConfigurationManager.AppSettings.Get("AddressStateProvinceID")),
                 Role = ConfigurationManager.AppSettings.Get("Role"),
             };
-            var roles = new List<string> { ConfigurationManager.AppSettings.Get("Role1"), ConfigurationManager.AppSettings.Get("Role2") };
+            var roles = new List<string>
+            {
+                ConfigurationManager.AppSettings.Get("Role1"),
+                ConfigurationManager.AppSettings.Get("Role2"),
+                ConfigurationManager.AppSettings.Get("Role3")
+            };
 
             return new Tuple<UserDTO, List<string>>(userDTO, roles);
         }

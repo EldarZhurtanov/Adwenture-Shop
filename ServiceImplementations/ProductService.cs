@@ -1,18 +1,14 @@
-﻿using ServiceСontracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Core.Managers.ManagerInterfaces;
+﻿using Core.Managers.ManagerInterfaces;
 using Core.Managers.MangersImplementations;
 using DataContracts;
+using ServiceСontracts;
+using System.Collections.Generic;
 
 namespace ServiceImplementations
 {
     public class ProductService : IProductService
     {
-        IProductManager productManager = new ProductManger();
+        readonly IProductManager productManager = new ProductManger();
         public DetailProductDTO GetDetailProduct(int productID)
         {
             return productManager.GetDetailProduct(productID);

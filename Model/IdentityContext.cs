@@ -1,12 +1,12 @@
-﻿using System.Data.Entity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
 using Model.Models;
+using System.Data.Entity;
 
 namespace Model
 {
-    public class ApplicationContext : IdentityDbContext<ApplicationUser>
+    public class IdentityContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationContext() : base("AdwentureWorksContext") { }
+        public IdentityContext() : base("AdwentureWorksContext") { }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

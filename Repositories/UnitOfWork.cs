@@ -1,22 +1,17 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
-using Model;
 using Model.Models;
 using Repositories.IdentityManagers;
 using Repositories.RepositoryImplementations;
 using Repositories.RepositoryInterfaces;
 using System;
-using System.Collections.Generic;
-using Microsoft.SqlServer.Types;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repositories
 {
     public class UnitOfWork : IDisposable
     {
-        private readonly DbContext _context;
+        private readonly DbContext _adwentureWorksContext;
+        private readonly IdentityDbContext<ApplicationUser> _identityContext;
 
         public IAddressRepository Address { get; private set; }
         public ICustomerRepository Customer { get; private set; }
@@ -30,55 +25,62 @@ namespace Repositories
         public ISalesPersonRepository SalesPerson { get; private set; }
         public ISalesTerritoryRepository SalesTerritory { get; private set; }
         public IShoppingCartItemRepository ShoppingCart { get; private set; }
-        public ProductModelRepository ProductModel { get; private set; }
-        public ProductSubcategoryRepository  ProductSubcategory { get; private set; }
-        public ProductModelProductDescriptionCultureRepository ProductModelProductDescriptionCulture { get; private set; }
-        public AspNetUsersBusinesEntityRepository AspNetUsersBusinesEntity { get; private set; }
+        public IProductModelRepository ProductModel { get; private set; }
+        public IProductSubcategoryRepository ProductSubcategory { get; private set; }
+        public IProductModelProductDescriptionCultureRepository ProductModelProductDescriptionCulture { get; private set; }
+        public IAspNetUsersBusinesEntityRepository AspNetUsersBusinesEntity { get; private set; }
         public ApplicationUserManager ApplicationUser { get; private set; }
         public ApplicationRoleManager ApplicationRole { get; private set; }
-        public BusinessEntityAddressRepository BusinessEntityAddress { get; private set; }
-        public BusinessEntityRepository BusinessEntity { get; private set; }
-        public PersonRepository Person { get; private set; }
-        public AddressTypeRepository AddressType { get; private set; }
-        public StateProvinceRepository StateProvince { get; private set; }
+        public IBusinessEntityAddressRepository BusinessEntityAddress { get; private set; }
+        public IBusinessEntityRepository BusinessEntity { get; private set; }
+        public IPersonRepository Person { get; private set; }
+        public IAddressTypeRepository AddressType { get; private set; }
+        public IStateProvinceRepository StateProvince { get; private set; }
+        public ISalesTaxRateRepository SalesTaxRate { get; private set; }
+        public IShipMethodRepository ShipMethod { get; private set; }
+        public IProductReserveRepository ProductReserve { get; private set; }
 
-        public UnitOfWork(DbContext context)
+
+        public UnitOfWork(DbContext adwentureWorkContext, IdentityDbContext<ApplicationUser> identityDbContext)
         {
-            this._context = context;
-            var v = new ApplicationContext();
+            _adwentureWorksContext = adwentureWorkContext;
+            _identityContext = identityDbContext;
 
-            Address = new AddressRepository(context);
-            Customer = new CustomerRepository(context);
-            ProductDescription = new ProductDescriptionRepository(context);
-            ProductInventory = new ProductInventoryRepository(context);
-            ProductPhoto = new ProductPhotoRepository(context);
-            ProductProductPhoto = new ProductProductPhotoRepository(context);
-            Product = new ProductRepository(context);
-            PurchaseOrderDetail = new PurchaseOrderDetailRepository(context);
-            PurchaseOrderHeader = new PurchaseOrderHeaderRepository(context);
-            SalesPerson = new SalesPersonRepository(context);
-            SalesTerritory = new SalesTerritoryRepository(context);
-            ShoppingCart = new ShoppingCartItemRepository(context);
-            ProductModel = new ProductModelRepository(context);
-            ProductSubcategory = new ProductSubcategoryRepository(context);
-            ProductModelProductDescriptionCulture = new ProductModelProductDescriptionCultureRepository(context);
-            AspNetUsersBusinesEntity = new AspNetUsersBusinesEntityRepository(v);
-            ApplicationUser = new ApplicationUserManager(new UserStore<ApplicationUser>(v));
-            ApplicationRole = new ApplicationRoleManager(new RoleStore<ApplicationRole>(v));
-            BusinessEntityAddress = new BusinessEntityAddressRepository(context);
-            BusinessEntity = new BusinessEntityRepository(context);
-            Person = new PersonRepository(context);
-            AddressType = new AddressTypeRepository(context);
-            StateProvince = new StateProvinceRepository(context);
+            Address = new AddressRepository(adwentureWorkContext);
+            Customer = new CustomerRepository(adwentureWorkContext);
+            ProductDescription = new ProductDescriptionRepository(adwentureWorkContext);
+            ProductInventory = new ProductInventoryRepository(adwentureWorkContext);
+            ProductPhoto = new ProductPhotoRepository(adwentureWorkContext);
+            ProductProductPhoto = new ProductProductPhotoRepository(adwentureWorkContext);
+            Product = new ProductRepository(adwentureWorkContext);
+            PurchaseOrderDetail = new PurchaseOrderDetailRepository(adwentureWorkContext);
+            PurchaseOrderHeader = new PurchaseOrderHeaderRepository(adwentureWorkContext);
+            SalesPerson = new SalesPersonRepository(adwentureWorkContext);
+            SalesTerritory = new SalesTerritoryRepository(adwentureWorkContext);
+            ShoppingCart = new ShoppingCartItemRepository(adwentureWorkContext);
+            ProductModel = new ProductModelRepository(adwentureWorkContext);
+            ProductSubcategory = new ProductSubcategoryRepository(adwentureWorkContext);
+            ProductModelProductDescriptionCulture = new ProductModelProductDescriptionCultureRepository(adwentureWorkContext);
+            AspNetUsersBusinesEntity = new AspNetUsersBusinesEntityRepository(_identityContext);
+            ApplicationUser = new ApplicationUserManager(new UserStore<ApplicationUser>(_identityContext));
+            ApplicationRole = new ApplicationRoleManager(new RoleStore<ApplicationRole>(_identityContext));
+            BusinessEntityAddress = new BusinessEntityAddressRepository(adwentureWorkContext);
+            BusinessEntity = new BusinessEntityRepository(adwentureWorkContext);
+            Person = new PersonRepository(adwentureWorkContext);
+            AddressType = new AddressTypeRepository(adwentureWorkContext);
+            StateProvince = new StateProvinceRepository(adwentureWorkContext);
+            SalesTaxRate = new SalesTaxRateRepository(adwentureWorkContext);
+            ShipMethod = new ShipMethodRepository(adwentureWorkContext);
+            ProductReserve = new ProductReserveRepository(adwentureWorkContext);
         }
 
         public int Complete()
         {
-            return _context.SaveChanges();
+            return _adwentureWorksContext.SaveChanges();
         }
         public void Dispose()
         {
-            _context.Dispose();
+            _adwentureWorksContext.Dispose();
         }
     }
 }

@@ -45,9 +45,13 @@
   <ItemGroup>
     <Compile Include="CartItemDTO.cs" />
     <Compile Include="DetailProductDTO.cs" />
+    <Compile Include="PurchaseOrderDetailDTO.cs" />
     <Compile Include="OperationDetailsDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseOrderDetailRowDTO.cs" />
+    <Compile Include="PurchaseOrderFilterDTO.cs" />
     <Compile Include="ShortProductDTO.cs" />
+    <Compile Include="PurchaseOrdersHeaderDTO.cs" />
     <Compile Include="UserDTO.cs" />
   </ItemGroup>
   <ItemGroup>

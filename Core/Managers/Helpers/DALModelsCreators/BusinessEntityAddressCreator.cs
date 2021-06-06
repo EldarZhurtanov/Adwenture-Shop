@@ -1,10 +1,5 @@
-﻿using DataContracts;
-using Model.Models;
+﻿using Model.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Managers.Helpers
 {
@@ -12,8 +7,8 @@ namespace Core.Managers.Helpers
     {
         public static BusinessEntityAddress Create(BusinessEntity businessEntity, Address address, AddressType addressType)
         {
-            return new BusinessEntityAddress() 
-            { 
+            return new BusinessEntityAddress()
+            {
                 BusinessEntityID = businessEntity.BusinessEntityID,
                 AddressID = address.AddressID,
                 AddressTypeID = addressType.AddressTypeID,
